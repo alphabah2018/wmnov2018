@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>CONTACT</title>
+  <script src="jquery.js"></script>
+  <script type="text/javascript">
+$(document).ready(function(){
+  $("#sub").click(function(){
+    var user_nom = $("#nom").val();
+    //console.log(user_nom);
+    var user_prenom = $("#prenom").val();
+    //console.log(user_prenom);
+    var user_email = $("#email").val();
+  //  console.log(user_email);
+    var user_message = $("#message").val();
+    //console.log(user_message);
+    $.ajax({
+      url:'db.php',
+      data:{nom:user_nom,prenom:user_prenom,email:user_email,message:user_message},
+      type:'POST',
+      success:function(data){
+        $("#result").html(data);
+      }
+    });
+  });
+});
+  </script>
+</head>
+
+<body>
+  <h1>CONTACT FORM</h1>
+  <p>
+    <label for="">Nom :</label><br>
+    <input type="text" name="nom" id="nom" value="">
+  </p>
+  <p>
+    <label for="">Prenom :</label><br>
+    <input type="text" name="prenom" id="prenom" value="">
+  </p>
+  <p>
+    <label for="">Email :</label><br>
+    <input type="email" name="email" id="email" value="">
+  </p>
+  <p>
+    <label for="">Votre message :</label><br>
+    <textarea id="message" rows="8" cols="80"></textarea>
+  </p>
+  <p>
+    <input type="submit" name="" id="sub" value="Envoyer">
+  </p>
+  <div id="result"></div>
+</body>
+
+</html>
